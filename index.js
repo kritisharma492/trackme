@@ -1,18 +1,41 @@
-var express = require('express');
-var app = express();
+const express = require('express')
+const mysql = require('mysql')
+const app = express()
+const port = 3000
 
-app.set('port', (process.env.PORT || 5000));
-
-app.use(express.static(__dirname + '/public'));
-
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-app.get('/', function(request, response) {
-  response.render('pages/index');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "trunk",
+  database : 'trackMe'
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
+
+// app.get('/', (request, response) => {
+// 	  var sql = "INSERT INTO UserLocation (device_uuid, location_lat, location_long) VALUES ( '" +request.query.device +"','" + request.query.lat
+// 	  + "','" + request.query.long + "')";
+// 	  console.log(request.query.device);
+// 	  console.log(request.query.lat);
+// 	  console.log(request.query.long);
+// 	  con.query(sql, function (err, result) {
+// 	    if (err) throw err;
+// 	    console.log("Result: " + result);
+// 	  });
+// 	  response.send('Ok')
+// })
+
+app.get('/summer', (request, response) => {
+	  response.send('Ok')
+})
+
+app.listen(port, (err) => {
+  if (err) {
+    return console.log('something bad happened', err)
+  }
+
+  console.log(`server is listening on ${port}`)
+})
