@@ -1,7 +1,7 @@
 const express = require('express')
 const mysql = require('mysql')
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000;
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -28,14 +28,14 @@ var con = mysql.createConnection({
 // 	  response.send('Ok')
 // })
 
-app.get('/summer', (request, response) => {
+app.get('/', (request, response) => {
 	  response.send('Ok')
 })
 
-app.listen(port, (err) => {
+app.listen(PORT , (err) => {
   if (err) {
     return console.log('something bad happened', err)
   }
 
-  console.log(`server is listening on ${port}`)
+  console.log(`Server is listening on port ${PORT}`);
 })
