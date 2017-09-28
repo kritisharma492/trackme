@@ -1,1 +1,1 @@
-web: PORT=9999 node index.js 
+web: node --debug=5858 index.js
